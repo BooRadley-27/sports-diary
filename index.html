@@ -48,7 +48,10 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 
 .search-wrap{position:relative;margin-bottom:12px;pointer-events:all;}
 .search-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:13px 18px 13px 44px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color 0.2s;}
+.search-input::-webkit-search-cancel-button{-webkit-appearance:none;display:none;}
+.search-input::-ms-clear{display:none;}
 .search-input::placeholder{color:var(--text-dim);}
+.search-input:focus{border-color:rgba(232,197,71,0.4);}
 .search-input:focus{border-color:rgba(232,197,71,0.4);}
 .search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--text-dim);pointer-events:none;}
 .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:20px;height:20px;display:none;align-items:center;justify-content:center;cursor:pointer;border:none;background:rgba(255,255,255,0.08);border-radius:50%;color:var(--text-dim);padding:0;}
@@ -78,8 +81,11 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .team-logo-ph{width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 .vs-divider{font-size:9px;font-weight:700;color:var(--text-dim);flex-shrink:0;}
 .event-info{flex:1;min-width:0;}
-.event-matchup{font-size:14px;font-weight:500;color:var(--text);line-height:1.3;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.event-sub{font-size:11px;color:var(--text-dim);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
+.event-matchup{font-size:13.5px;font-weight:500;color:var(--text);line-height:1.35;display:block;}
+.event-matchup-away{display:block;}
+.event-matchup-vs{color:var(--text-dim);font-size:11px;font-weight:400;margin:0 3px;}
+.event-matchup-home{display:block;}
+.event-sub{font-size:11px;color:var(--text-dim);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
 .event-right{flex-shrink:0;text-align:right;min-width:52px;}
 .score-badge{font-family:'Bebas Neue',sans-serif;font-size:17px;line-height:1;color:var(--text);display:block;letter-spacing:0.04em;}
 .result-pill{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-top:3px;}
@@ -134,9 +140,9 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .modal-score-big{font-size:52px;font-weight:800;line-height:1;color:var(--text);font-family:'Bebas Neue',sans-serif;letter-spacing:-1px;}
 .modal-score-sep{font-size:32px;font-weight:300;color:var(--text-dim);line-height:1;}
 
-.detail-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:300;display:none;align-items:center;justify-content:center;padding:calc(var(--safe-top)+12px) 12px calc(var(--safe-bottom)+12px);}
+.detail-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:300;display:none;align-items:center;justify-content:center;box-sizing:border-box;padding:calc(var(--safe-top) + 20px) 12px calc(var(--safe-bottom) + 20px);}
 .detail-modal-overlay.open{display:flex;}
-.detail-modal{width:100%;max-width:520px;max-height:calc(100vh - 60px);background:var(--surface);border-radius:20px;border:1px solid var(--border);overflow-y:auto;padding:0 0 28px;animation:popIn 0.25s cubic-bezier(0.34,1.56,0.64,1);position:relative;scrollbar-width:none;}
+.detail-modal{width:100%;max-width:520px;max-height:calc(100vh - var(--safe-top) - var(--safe-bottom) - 40px);background:var(--surface);border-radius:20px;border:1px solid var(--border);overflow-y:auto;padding:0 0 28px;animation:popIn 0.25s cubic-bezier(0.34,1.56,0.64,1);position:relative;scrollbar-width:none;}
 .detail-modal::-webkit-scrollbar{display:none;}
 @keyframes popIn{from{opacity:0;transform:scale(0.93)}to{opacity:1;transform:scale(1)}}
 .modal-close-btn{position:absolute;top:14px;right:14px;width:28px;height:28px;background:var(--surface2);border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-dim);z-index:10;}
@@ -182,8 +188,8 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
 .ls-table th{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);padding:5px 6px;text-align:center;border-bottom:1px solid var(--border);}
 .ls-table th.ls-team-col{text-align:left;}
 .ls-table th.ls-tot{color:var(--gold);}
-.ls-table td{padding:8px 6px;text-align:center;color:var(--text-mid);font-size:12px;}
-.ls-table td.ls-team-col{text-align:left;display:flex;align-items:center;gap:7px;white-space:nowrap;}
+.ls-table td{padding:8px 6px;text-align:center;color:var(--text-mid);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.03em;}
+.ls-table td.ls-team-col{font-family:inherit;font-size:inherit;text-align:left;display:flex;align-items:center;gap:7px;white-space:nowrap;}
 .ls-table tr:last-child td{border-bottom:none;}
 .ls-table td:last-child,.ls-table th:last-child{padding-right:0;}
 .ls-logo{width:18px;height:18px;object-fit:contain;flex-shrink:0;}
@@ -230,9 +236,9 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
       </div>
       <div class="stats-grid">
         <div class="stat-card"><span class="stat-number" id="statGames">0</span><span class="stat-label">Games</span></div>
-        <div class="stat-card"><span class="stat-number" id="statRecord" style="font-size:17px;padding-top:6px">—</span><span class="stat-label">Record</span></div>
-        <div class="stat-card"><span class="stat-number" id="statSports">0</span><span class="stat-label">Sports</span></div>
-        <div class="stat-card"><span class="stat-number" id="statVenues">0</span><span class="stat-label">Venues</span></div>
+        <div class="stat-card" onclick="openTeamsList()" style="cursor:pointer"><span class="stat-number" id="statTeams">0</span><span class="stat-label">Teams</span></div>
+        <div class="stat-card" onclick="openPlayersList()" style="cursor:pointer"><span class="stat-number" id="statPlayers">0</span><span class="stat-label">Players</span></div>
+        <div class="stat-card" onclick="openVenuesList()" style="cursor:pointer"><span class="stat-number" id="statVenues">0</span><span class="stat-label">Venues</span></div>
       </div>
     </div>
     <div class="search-wrap">
@@ -305,6 +311,39 @@ html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-seri
       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
     <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Teams List Modal -->
+<div class="detail-modal-overlay" id="teamsModal" onclick="if(event.target===this)closeTeamsList()" style="z-index:400">
+  <div class="detail-modal" style="max-height:72vh;padding:0 0 20px">
+    <button class="modal-close-btn" onclick="closeTeamsList()"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div style="padding:20px 20px 12px;border-bottom:1px solid var(--border)">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.04em">Teams Seen</div>
+    </div>
+    <div id="teamsListContent" style="padding:12px 20px;overflow-y:auto;max-height:calc(72vh - 80px)"></div>
+  </div>
+</div>
+
+<!-- Players List Modal -->
+<div class="detail-modal-overlay" id="playersModal" onclick="if(event.target===this)closePlayersList()" style="z-index:400">
+  <div class="detail-modal" style="max-height:72vh;padding:0 0 20px">
+    <button class="modal-close-btn" onclick="closePlayersList()"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div style="padding:20px 20px 12px;border-bottom:1px solid var(--border)">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.04em">Players Seen</div>
+    </div>
+    <div id="playersListContent" style="padding:12px 20px;overflow-y:auto;max-height:calc(72vh - 80px)"></div>
+  </div>
+</div>
+
+<!-- Venues List Modal -->
+<div class="detail-modal-overlay" id="venuesModal" onclick="if(event.target===this)closeVenuesList()" style="z-index:400">
+  <div class="detail-modal" style="max-height:72vh;padding:0 0 20px">
+    <button class="modal-close-btn" onclick="closeVenuesList()"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div style="padding:20px 20px 12px;border-bottom:1px solid var(--border)">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.04em">Venues</div>
+    </div>
+    <div id="venuesListContent" style="padding:12px 20px;overflow-y:auto;max-height:calc(72vh - 80px)"></div>
   </div>
 </div>
 
@@ -681,7 +720,7 @@ function parseMatchup(title) {
 // ═══════════════════════════════════════════
 //  STORAGE
 // ═══════════════════════════════════════════
-const SK = {events:'sportsdiary_events_v2',url:'sportsdiary_url',sync:'sportsdiary_lastsync'};
+const SK = {events:'sportsdiary_events_v2',url:'sportsdiary_url',sync:'sportsdiary_lastsync',players:'sportsdiary_players_v1'};
 function save(k,v){try{localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v));}catch(e){}}
 function load(k){try{const v=localStorage.getItem(k);if(!v)return null;try{return JSON.parse(v);}catch{return v;}}catch{return null;}}
 
@@ -694,14 +733,15 @@ let activeFilter='all';
 const DEFAULT_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuxiJ9GbHAWFcrryUMJNZNgLzsZCmYAnSCmfjV1KSuOOZpwIgOYkFaYJWsJ1f-NnirtDS5pzoF4M-K/pub?output=csv';
 
 window.addEventListener('DOMContentLoaded', async () => {
+  loadPlayerCache(); // load persisted player data immediately
   const saved=load(SK.events); const url=load(SK.url)||DEFAULT_CSV_URL;
-  // If saved events exist but none have boxScoreUrl field, force a fresh sync
-  // (handles the case where localStorage is stale from before this feature was added)
   const needsRefresh = saved && saved.length && saved.every(e => e.boxScoreUrl === undefined);
   if (saved && saved.length && !needsRefresh) {allEvents=saved; renderAll();}
   else {showLoadingState(); await autoResync(url);}
   updateLastSyncLabel();
   document.getElementById('searchInput').addEventListener('input',onSearchInput);
+  // Start background player prefetch after a short delay (non-blocking)
+  setTimeout(() => prefetchAllPlayers(), 4000);
 });
 
 function showLoadingState(){document.getElementById('eventsContainer').innerHTML=`<div class="empty-state"><span class="empty-state-icon"><span class="spinner" style="width:32px;height:32px;border-width:3px"></span></span><p class="empty-state-title" style="margin-top:20px">Loading…</p></div>`;}
@@ -807,6 +847,7 @@ function rowsToEvents(rows){
       venue:g(row,cV), result, score,
       notes:g(row,cN), type, league:g(row,cLeague), attendedWith:g(row,cW),
       boxScoreUrl:bsUrl,
+      stableKey: (normDate(dr)+'::'+(title||'').trim()).replace(/[^a-z0-9:]/gi,'_').toLowerCase(),
       awayLogoUrl:g(row,cAwayLogo), homeLogoUrl:g(row,cHomeLogo)});
   }
   return evs.sort((a,b)=>b.date.localeCompare(a.date));
@@ -818,7 +859,15 @@ function rowsToEvents(rows){
 function pd(s){const p=s.split('-');const mn=parseInt(p[1]||'1',10)-1;return{mon:MONTHS[mn]||'—',day:parseInt(p[2]||'1',10),year:p[0]||'',mn};}
 function fmtFull(s){const d=pd(s);return`${MONTHS_FULL[d.mn]||''} ${d.day}, ${d.year}`;}
 function fmtShort(s){const d=pd(s);return`${d.mon} ${d.day}, ${d.year}`;}
-function venShort(r){if(!r)return'';const ls=r.split(/[\r\n]+/).map(s=>s.trim()).filter(Boolean);return ls.length>=2?ls[0]+' · '+ls[1]:ls[0]||r;}
+function venShort(r){
+  if(!r)return'';
+  const ls=r.split(/[\r\n]+/).map(s=>s.trim()).filter(Boolean);
+  if(ls.length>=2)return ls[0]+' · '+ls[1];
+  const single=ls[0]||r;
+  const m=single.match(/^(.+?)\s+([A-Z][a-zA-Z\s\.]+,\s*[A-Z]{2})$/);
+  if(m)return m[1]+' · '+m[2];
+  return single;
+}
 function esc(s){return(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmtScore(raw){
   if(!raw)return'';
@@ -888,7 +937,7 @@ function cardHtml(ev){
         ` : `<span class="team-logo-ph">${icon}</span>`}
       </div>
       <div class="event-info">
-        <span class="event-matchup">${esc(ev.title||'—')}</span>
+        ${away && home ? `<span class="event-matchup"><span class="event-matchup-away">${esc(away)}</span><span class="event-matchup-vs">vs</span><span class="event-matchup-home">${esc(home)}</span></span>` : `<span class="event-matchup">${esc(ev.title||'—')}</span>`}
         <span class="event-sub">${ev.league ? '<span style="color:var(--gold-dim);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-right:4px">'+esc(ev.league)+'</span>' : ''}${esc(venShort(ev.venue))}${(ev.boxScoreUrl && ev.boxScoreUrl.toLowerCase()!=='n/a') ? ' <span style="color:var(--gold);opacity:0.5;font-size:9px" title="Box score available">📊</span>' : ''}</span>
       </div>
 
@@ -916,19 +965,303 @@ async function injectCardLogos(ev){
 // ═══════════════════════════════════════════
 //  STATS & FILTERS
 // ═══════════════════════════════════════════
+
+// Global player cache — persisted in localStorage so it survives page reloads
+// Structure: { "eventId": { away: ["Name1","Name2",...], home: [...] } }
+let _playerCache = {};
+function loadPlayerCache() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(SK.players) || '{}');
+    // Migrate: drop any entries with purely numeric keys (old buggy format)
+    const hasNumericKeys = Object.keys(raw).some(k => /^\d+$/.test(k));
+    if (hasNumericKeys) {
+      console.log('[players] clearing old numeric-keyed cache');
+      _playerCache = {};
+      localStorage.removeItem(SK.players);
+    } else {
+      _playerCache = raw;
+    }
+  } catch(e) { _playerCache = {}; }
+}
+function savePlayerCache() {
+  try { localStorage.setItem(SK.players, JSON.stringify(_playerCache)); } catch(e) {}
+}
+
+function registerPlayers(stableKey, awayPlayers, homePlayers) {
+  if (!stableKey) return;
+  if (_playerCache[stableKey] && (_playerCache[stableKey].away?.length || _playerCache[stableKey].home?.length)) return; // already cached with real data, skip
+  _playerCache[stableKey] = {away: awayPlayers.filter(Boolean), home: homePlayers.filter(Boolean)};
+  savePlayerCache();
+  updateStats();
+}
+
+function getAllTeams() {
+  const counts = {};
+  allEvents.forEach(ev => {
+    const home = ev.homeTeam || parseMatchup(ev.title).home;
+    const away = ev.awayTeam || parseMatchup(ev.title).away;
+    if (home) counts[home] = (counts[home]||0) + 1;
+    if (away) counts[away] = (counts[away]||0) + 1;
+  });
+  return counts;
+}
+
+function getAllPlayers() {
+  const counts = {};
+  Object.values(_playerCache).forEach(({away, home}) => {
+    [...(away||[]), ...(home||[])].forEach(p => {
+      if (p) counts[p] = (counts[p]||0) + 1;
+    });
+  });
+  return counts;
+}
+
+// Background prefetch — silently renders each game's box score into a hidden div,
+// scrapes the player names (same as the modal does), then discards.
+// No extra API calls — just reuses the same fetch+render pipeline.
+let _prefetchRunning = false;
+async function prefetchAllPlayers() {
+  if (_prefetchRunning) return;
+  _prefetchRunning = true;
+
+  const todo = allEvents.filter(ev => {
+    const url = (ev.boxScoreUrl||'').trim();
+    if (!url || url.toLowerCase() === 'n/a') return false;
+    const key = ev.stableKey || String(ev.id);
+    return !(_playerCache[key]?.away?.length || _playerCache[key]?.home?.length);
+  });
+
+  if (!todo.length) { _prefetchRunning = false; updateStats(); return; }
+  console.log(`[prefetch] ${todo.length} games to silently load`);
+
+  // Hidden scratch div — render box scores here, scrape names, then discard
+  const scratch = document.createElement('div');
+  scratch.style.cssText = 'position:absolute;left:-9999px;top:-9999px;visibility:hidden;pointer-events:none';
+  document.body.appendChild(scratch);
+
+  for (const ev of todo) {
+    // Pause while a modal is open so we don't compete with the user
+    while (document.querySelector('.detail-modal.open')) {
+      await new Promise(r => setTimeout(r, 2000));
+    }
+
+    try {
+      const bsUrlInfo = parseBoxScoreUrl(ev.boxScoreUrl);
+      if (!bsUrlInfo) continue;
+
+      const sport = getSportKey(ev.type, ev.league);
+      let bsData = null;
+
+      if (bsUrlInfo.source === 'nhl') {
+        bsData = await fetchNhlBoxScore(bsUrlInfo.gameId);
+      } else if (bsUrlInfo.source === 'mlb') {
+        bsData = await fetchMlbBoxScore(bsUrlInfo.gameId);
+      } else if (bsUrlInfo.source === 'espn') {
+        bsData = await fetchEspnBoxScore(bsUrlInfo.gameId, espnSportPath(bsUrlInfo.sport || ev.type, ev));
+      }
+
+      if (!bsData) continue;
+
+      // Render into scratch div
+      if (bsData.source === 'nhl') scratch.innerHTML = renderNhlBoxScore(bsData, null, null);
+      else if (bsData.source === 'mlb') scratch.innerHTML = renderMlbBoxScore(bsData, null, null);
+      else if (bsData.source === 'espn') {
+        if (sport === 'soccer') scratch.innerHTML = renderSoccerBoxScore(bsData, null, null);
+        else scratch.innerHTML = renderEspnBoxScore(bsData, null, null, sport);
+      }
+
+      // Scrape names from rendered HTML — same logic as openModal
+      const scrape = id => {
+        const p = scratch.querySelector('#' + id);
+        if (!p) return [];
+        return [...p.querySelectorAll('.bs-player-name')].map(el =>
+          [...el.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent.trim()).join('').trim()
+        ).filter(Boolean);
+      };
+      const away = scrape('bs-away-panel');
+      const home = scrape('bs-home-panel');
+
+      if (away.length || home.length) {
+        const key = ev.stableKey || String(ev.id);
+        _playerCache[key] = {away, home};
+        savePlayerCache();
+        const el = document.getElementById('statPlayers');
+        if (el) el.textContent = Object.keys(getAllPlayers()).length;
+      }
+
+    } catch(e) { /* silent */ }
+
+    scratch.innerHTML = '';
+    await new Promise(r => setTimeout(r, 1200)); // 1.2s between fetches
+  }
+
+  document.body.removeChild(scratch);
+  _prefetchRunning = false;
+  updateStats();
+  console.log('[prefetch] complete');
+}
+
+// Extract player names from any box score result and register them
+function extractAndRegisterPlayers(stableKey, bsData) {
+  if (!bsData || !stableKey) return;
+  let awayPl = [], homePl = [];
+  if (bsData.source === 'nhl') {
+    const d2 = bsData.data?.playerByGameStats || {};
+    awayPl = [...(d2.awayTeam?.forwards||[]),...(d2.awayTeam?.defense||[]),...(d2.awayTeam?.goalies||[])].map(p=>p.name?.default).filter(Boolean);
+    homePl = [...(d2.homeTeam?.forwards||[]),...(d2.homeTeam?.defense||[]),...(d2.homeTeam?.goalies||[])].map(p=>p.name?.default).filter(Boolean);
+  } else if (bsData.source === 'mlb') {
+    awayPl = Object.values(bsData.bs?.teams?.away?.players||{}).map(p=>p.person?.fullName).filter(Boolean);
+    homePl = Object.values(bsData.bs?.teams?.home?.players||{}).map(p=>p.person?.fullName).filter(Boolean);
+  } else if (bsData.source === 'espn') {
+    const bsp = bsData.data?.boxscore?.players || [];
+    awayPl = (bsp.find(g=>g.homeAway==='away')?.statistics||[]).flatMap(s=>(s.athletes||[]).map(a=>a.athlete?.displayName)).filter(Boolean);
+    homePl = (bsp.find(g=>g.homeAway==='home')?.statistics||[]).flatMap(s=>(s.athletes||[]).map(a=>a.athlete?.displayName)).filter(Boolean);
+    if (!awayPl.length && !homePl.length) {
+      const c3 = bsData.data?.header?.competitions?.[0];
+      awayPl = (c3?.competitors?.find(t=>t.homeAway==='away')?.roster||[]).map(p=>p.athlete?.displayName).filter(Boolean);
+      homePl = (c3?.competitors?.find(t=>t.homeAway==='home')?.roster||[]).map(p=>p.athlete?.displayName).filter(Boolean);
+    }
+  }
+  if (awayPl.length || homePl.length) registerPlayers(stableKey, awayPl, homePl);
+}
+
 function updateStats(){
   const e=allEvents;
-  const w=e.filter(x=>(x.result||'').toLowerCase()==='win').length;
-  const l=e.filter(x=>(x.result||'').toLowerCase()==='loss').length;
-  const d=e.filter(x=>(x.result||'').toLowerCase()==='draw').length;
-  const sp=new Set(e.map(x=>getSportKey(x.type, x.league)).filter(s=>s!=='default'));
+  const teams = getAllTeams();
+  const players = getAllPlayers();
   const ve=new Set(e.map(x=>venShort(x.venue)).filter(Boolean));
   document.getElementById('statGames').textContent=e.length;
-  document.getElementById('statSports').textContent=sp.size;
+  document.getElementById('statTeams').textContent=Object.keys(teams).length;
+  document.getElementById('statPlayers').textContent=Object.keys(players).length;
   document.getElementById('statVenues').textContent=ve.size;
-  const rec=document.getElementById('statRecord');
-  if(w+l+d>0){rec.innerHTML=`<span style="color:var(--green)">${w}</span><span style="color:var(--text-dim)">-</span><span style="color:var(--red)">${l}</span>${d?`<span style="color:var(--text-dim)">-</span><span style="color:var(--gold)">${d}</span>`:''}`;}
-  else rec.textContent='—';
+}
+
+function openTeamsList() {
+  const counts = getAllTeams();
+  const sorted = Object.entries(counts).sort((a,b) => a[0].localeCompare(b[0]));
+  const html = sorted.map(([name, count]) => {
+    const countBadge = count > 1 ? `<span style="color:var(--text-dim);font-size:12px;margin-left:4px">(${count})</span>` : '';
+    return `<div class="list-item-clickable" data-team="${esc(name)}" style="padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;font-size:14px;color:var(--text);display:flex;align-items:center;justify-content:space-between"><span>${esc(name)}${countBadge}</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3;flex-shrink:0"><path d="m9 18 6-6-6-6"/></svg></div>`;
+  }).join('');
+  const content = document.getElementById('teamsListContent');
+  content.innerHTML = html || '<div style="color:var(--text-dim);font-size:14px">No teams yet.</div>';
+  // Attach click listeners after innerHTML set (avoids HTML attribute quoting issues)
+  content.querySelectorAll('[data-team]').forEach(el => {
+    el.addEventListener('click', () => filterByTeam(el.getAttribute('data-team')));
+  });
+  document.getElementById('teamsModal').classList.add('open');
+}
+
+function closeTeamsList() {
+  document.getElementById('teamsModal').classList.remove('open');
+}
+
+function filterByTeam(teamName) {
+  closeTeamsList();
+  const input = document.getElementById('searchInput');
+  input.value = teamName;
+  document.getElementById('searchClear').classList.add('visible');
+  const q = teamName.toLowerCase();
+  const r = allEvents.filter(ev =>
+    (ev.title&&ev.title.toLowerCase().includes(q)) ||
+    (ev.awayTeam&&ev.awayTeam.toLowerCase().includes(q)) ||
+    (ev.homeTeam&&ev.homeTeam.toLowerCase().includes(q))
+  );
+  renderAll(r);
+}
+
+function openPlayersList() {
+  const counts = getAllPlayers();
+  if (!Object.keys(counts).length) {
+    document.getElementById('playersListContent').innerHTML = '<div style="color:var(--text-dim);font-size:14px;padding:8px 0">Player data loads when you open a game with a box score. Open some games first!</div>';
+    document.getElementById('playersModal').classList.add('open');
+    return;
+  }
+  // Format as "Last, First"
+  function formatPlayerName(fullName) {
+    const parts = fullName.trim().split(' ');
+    if (parts.length < 2) return fullName;
+    const last = parts[parts.length-1];
+    const first = parts.slice(0, parts.length-1).join(' ');
+    return `${last}, ${first}`;
+  }
+  const sorted = Object.entries(counts).sort((a,b) => {
+    const fa = formatPlayerName(a[0]), fb = formatPlayerName(b[0]);
+    return fa.localeCompare(fb);
+  });
+  const html = sorted.map(([name, count]) => {
+    const display = formatPlayerName(name);
+    const countBadge = count > 1 ? `<span style="color:var(--text-dim);font-size:12px;margin-left:4px">(${count})</span>` : '';
+    return `<div class="list-item-clickable" data-player="${esc(name)}" style="padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;font-size:14px;color:var(--text);display:flex;align-items:center;justify-content:space-between"><span>${esc(display)}${countBadge}</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3;flex-shrink:0"><path d="m9 18 6-6-6-6"/></svg></div>`;
+  }).join('');
+  const content = document.getElementById('playersListContent');
+  content.innerHTML = html;
+  content.querySelectorAll('[data-player]').forEach(el => {
+    el.addEventListener('click', () => filterByPlayer(el.getAttribute('data-player')));
+  });
+  document.getElementById('playersModal').classList.add('open');
+}
+
+function closePlayersList() {
+  document.getElementById('playersModal').classList.remove('open');
+}
+
+function openVenuesList() {
+  const counts = {};
+  allEvents.forEach(ev => {
+    const v = (ev.venue||'').trim();
+    if (v) counts[v] = (counts[v]||0) + 1;
+  });
+  const sorted = Object.entries(counts).sort((a,b) => {
+    // Sort by just the venue name part (before any newline)
+    const nameA = a[0].split(/[\r\n]/)[0].trim();
+    const nameB = b[0].split(/[\r\n]/)[0].trim();
+    return nameA.localeCompare(nameB);
+  });
+  const html = sorted.map(([rawVenue, count]) => {
+    const displayName = venShort(rawVenue); // applies the · separator
+    const countBadge = count > 1 ? `<span style="color:var(--text-dim);font-size:12px;margin-left:4px">(${count})</span>` : '';
+    return `<div class="list-item-clickable" data-venue="${esc(rawVenue)}" style="padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;font-size:14px;color:var(--text);display:flex;align-items:center;justify-content:space-between"><span>${esc(displayName)}${countBadge}</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3;flex-shrink:0"><path d="m9 18 6-6-6-6"/></svg></div>`;
+  }).join('');
+  const content = document.getElementById('venuesListContent');
+  content.innerHTML = html || '<div style="color:var(--text-dim);font-size:14px">No venues yet.</div>';
+  content.querySelectorAll('[data-venue]').forEach(el => {
+    el.addEventListener('click', () => filterByVenue(el.getAttribute('data-venue')));
+  });
+  document.getElementById('venuesModal').classList.add('open');
+}
+
+function closeVenuesList() {
+  document.getElementById('venuesModal').classList.remove('open');
+}
+
+function filterByVenue(venueName) {
+  closeVenuesList();
+  const input = document.getElementById('searchInput');
+  input.value = venueName;
+  document.getElementById('searchClear').classList.add('visible');
+  const q = venueName.toLowerCase();
+  renderAll(allEvents.filter(ev => (ev.venue||'').toLowerCase().includes(q)));
+}
+
+function filterByPlayer(playerName) {
+  closePlayersList();
+  const input = document.getElementById('searchInput');
+  input.value = playerName;
+  document.getElementById('searchClear').classList.add('visible');
+  const q = playerName.toLowerCase();
+  // Find events whose cached player list includes this player
+  const matchingStableKeys = new Set();
+  Object.entries(_playerCache).forEach(([key, {away, home}]) => {
+    if ([...(away||[]), ...(home||[])].some(p => p && p.toLowerCase() === q)) {
+      matchingStableKeys.add(key);
+    }
+  });
+  const r = allEvents.filter(ev => matchingStableKeys.has(ev.stableKey || String(ev.id)));
+  renderAll(r.length ? r : allEvents.filter(ev =>
+    (ev.title&&ev.title.toLowerCase().includes(q)) ||
+    (ev.notes&&ev.notes.toLowerCase().includes(q))
+  ));
 }
 function buildFilterChips(){
   const sp=[...new Set(allEvents.map(e=>getSportKey(e.type, e.league)).filter(s=>s!=='default'))];
@@ -945,14 +1278,52 @@ const _bsCache = {};
 
 function parseBoxScoreUrl(url) {
   if (!url) return null;
-  // ESPN: espn.com/mlb/boxscore/_/gameId/401778098
-  const espn = url.match(/espn\.com\/(?:[a-z]+\/)?([a-z]+)\/boxscore\/_\/gameId\/(\d+)/i);
-  if (espn) return {source: 'espn', sport: espn[1].toLowerCase(), gameId: espn[2]};
-  // MLB: mlb.com/gameday/.../777635/...
+  // ESPN: espn.com/mens-college-basketball/boxscore/_/gameId/401778098
+  //       espn.com/mlb/boxscore/_/gameId/401778098
+  //       espn.com/soccer/match/_/gameId/...  or  espn.com/soccer/usa.1/...
+  const espnBoxscore = url.match(/espn\.com\/(.+?)\/boxscore\/_\/gameId\/(\d+)/i);
+  if (espnBoxscore) {
+    const rawPath = espnBoxscore[1].toLowerCase();
+    // Map ESPN URL path to sport key
+    let sport = 'baseball'; // fallback
+    if (rawPath.includes('college-basketball') || rawPath.includes('ncaa') || rawPath === 'ncaamb') sport = 'ncaamb';
+    else if (rawPath.includes('basketball')) sport = 'basketball';
+    else if (rawPath.includes('football') && rawPath.includes('college')) sport = 'ncaafb';
+    else if (rawPath.includes('football')) sport = 'football';
+    else if (rawPath.includes('hockey')) sport = 'hockey';
+    else if (rawPath.includes('soccer')) sport = 'soccer';
+    else if (rawPath === 'mlb' || rawPath.includes('baseball')) sport = 'baseball';
+    else if (rawPath === 'nfl') sport = 'football';
+    else if (rawPath === 'nba') sport = 'basketball';
+    else if (rawPath === 'nhl') sport = 'hockey';
+    return {source: 'espn', sport, gameId: espnBoxscore[2]};
+  }
+  // ESPN soccer match: espn.com/soccer/match/_/gameId/... or espn.com/soccer/usa.1/match/_/gameId/...
+  const espnSoccer = url.match(/espn\.com\/soccer\/.*?(?:match|game|boxscore)\/_\/gameId\/(\d+)/i);
+  if (espnSoccer) return {source: 'espn', sport: 'soccer', gameId: espnSoccer[1]};
+  // ESPN generic with gameId
+  const espnGeneric = url.match(/espn\.com\/.*?gameId\/(\d+)/i);
+  if (espnGeneric) {
+    let sport = 'baseball';
+    const u = url.toLowerCase();
+    if (u.includes('college-basketball') || u.includes('ncaa')) sport = 'ncaamb';
+    else if (u.includes('basketball')) sport = 'basketball';
+    else if (u.includes('football') && u.includes('college')) sport = 'ncaafb';
+    else if (u.includes('football') || u.includes('nfl')) sport = 'football';
+    else if (u.includes('hockey') || u.includes('nhl')) sport = 'hockey';
+    else if (u.includes('soccer') || u.includes('mls')) sport = 'soccer';
+    return {source: 'espn', sport, gameId: espnGeneric[1]};
+  }
+  // NHL.com
+  const nhlGame = url.match(/nhl\.com\/[^?#]*?(\d{8,10})(?:\/|$)/i);
+  if (nhlGame) return {source: 'nhl', gameId: nhlGame[1]};
+  const nhlReport = url.match(/nhl\.com\/.+?(\d{7})\.HTM/i);
+  if (nhlReport) return {source: 'nhl', gameId: nhlReport[1]};
+  // MLB: mlb.com/gameday/...
   const mlb = url.match(/\/gameday\/[^/]+\/\d{4}\/\d{2}\/\d{2}\/(\d+)/);
   if (mlb) return {source: 'mlb', gameId: mlb[1]};
-  // Fallback: any 6-9 digit number in path
-  const num = url.match(/[^\/](\d{6,9})(?:\/|$)/);
+  // Last fallback: 6-9 digit number
+  const num = url.match(/\/(\d{6,9})(?:\/|$)/);
   if (num) return {source: 'mlb', gameId: num[1]};
   return null;
 }
@@ -964,37 +1335,59 @@ const ESPN_SPORT_MAP = {
   mlb:'baseball/mlb', nfl:'football/nfl', nba:'basketball/nba',
   nhl:'hockey/nhl', mls:'soccer/usa.1', epl:'soccer/eng.1',
   ncaafb:'football/college-football', ncaamb:'basketball/mens-college-basketball',
+  ncaaw:'basketball/womens-college-basketball', ncaam:'basketball/mens-college-basketball',
+  soccer:'soccer/usa.1',
 };
-function espnSportPath(sportStr) {
+function espnSportPath(sportStr, ev) {
   if (!sportStr) return 'baseball/mlb';
   const s = sportStr.toLowerCase().replace(/[^a-z]/g,'');
+  // Direct map first
+  if (ESPN_SPORT_MAP[s]) return ESPN_SPORT_MAP[s];
+  // Detect NCAA basketball from league field or sport string
+  if (ev) {
+    const league = (ev.league||'').toLowerCase().replace(/[^a-z]/g,'');
+    if (league === 'ncaa' || league === 'ncaamb' || league === 'ncaabb' || league.includes('collegebasketball')) return 'basketball/mens-college-basketball';
+    if (['mls','epl','laliga','seriea','bundesliga','ligue1','usls'].includes(league)) {
+      const soccerMap = {mls:'usa.1',epl:'eng.1',laliga:'esp.1',seriea:'ita.1',bundesliga:'ger.1',ligue1:'fra.1',usls:'usa.2'};
+      return 'soccer/' + (soccerMap[league]||'usa.1');
+    }
+  }
+  // Fuzzy matches
+  if (s.includes('collegebasketball') || s.includes('menscollegebasketball') || s.includes('ncaamb') || s.includes('ncaabb')) return 'basketball/mens-college-basketball';
+  if (s.includes('basketball')) return 'basketball/nba';
+  if (s.includes('football') && s.includes('college')) return 'football/college-football';
+  if (s.includes('football')) return 'football/nfl';
+  if (s.includes('hockey')) return 'hockey/nhl';
+  if (s.includes('soccer') || s === 'mls') return 'soccer/usa.1';
   return ESPN_SPORT_MAP[s] || 'baseball/mlb';
 }
 
-async function apiFetch(url) {
+async function apiFetch(url, timeoutMs = 8000) {
+  const fetchWithTimeout = (fn) => Promise.race([
+    fn(),
+    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), timeoutMs))
+  ]);
   const attempts = [
-    ['direct', () => fetch(url, {mode:'cors', cache:'no-cache'}).then(r => { console.log('direct status:', r.status); return r.ok ? r.json() : Promise.reject('HTTP '+r.status); })],
-    ['corsproxy', () => fetch('https://corsproxy.io/?'+encodeURIComponent(url), {cache:'no-cache'}).then(r => { console.log('corsproxy status:', r.status); return r.ok ? r.json() : Promise.reject('HTTP '+r.status); })],
-    ['allorigins', () => fetch('https://api.allorigins.win/get?url='+encodeURIComponent(url), {cache:'no-cache'})
+    ['direct', () => fetchWithTimeout(() => fetch(url, {mode:'cors', cache:'no-cache'}).then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }))],
+    ['corsproxy', () => fetchWithTimeout(() => fetch('https://corsproxy.io/?'+encodeURIComponent(url), {cache:'no-cache'}).then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }))],
+    ['allorigins', () => fetchWithTimeout(() => fetch('https://api.allorigins.win/get?url='+encodeURIComponent(url), {cache:'no-cache'})
         .then(r => r.ok ? r.json() : Promise.reject('HTTP '+r.status))
-        .then(j => { if(!j?.contents) throw new Error('empty contents'); return JSON.parse(j.contents); })],
+        .then(j => { if(!j?.contents) throw new Error('empty contents'); return JSON.parse(j.contents); }))],
   ];
   for (const [label, fn] of attempts) {
     try {
-      console.log('apiFetch trying:', label, url);
       const result = await fn();
-      console.log('apiFetch success via:', label);
       return result;
     } catch(e) {
-      console.warn('apiFetch failed ['+label+']:', e);
+      console.warn('apiFetch failed ['+label+']:', e.message || e);
     }
   }
   throw new Error('All fetch methods failed for: ' + url);
 }
 
 async function fetchEspnBoxScore(gameId, sportPath) {
-  const ck = `espn::${gameId}`;
-  if (ck in _bsCache) return _bsCache[ck];
+  const ck = `espn::${gameId}::${sportPath}`;
+  if (_bsCache[ck]) return _bsCache[ck]; // only return cached successes
   try {
     const url = `https://site.api.espn.com/apis/site/v2/sports/${sportPath}/summary?event=${gameId}`;
     console.log('ESPN fetch URL:', url);
@@ -1004,12 +1397,248 @@ async function fetchEspnBoxScore(gameId, sportPath) {
     return _bsCache[ck];
   } catch(e) {
     console.error('fetchEspnBoxScore failed:', gameId, sportPath, e);
-    _bsCache[ck] = null;
-    return null;
+    return null; // don't cache failure — allow retry next time
   }
 }
 
-function renderEspnBoxScore(data, homeLogo, awayLogo) {
+async function fetchNhlBoxScore(gameId) {
+  const ck = `nhl::${gameId}`;
+  if (_bsCache[ck]) return _bsCache[ck];
+  try {
+    const [boxUrl, summaryUrl] = [
+      `https://api-web.nhle.com/v1/gamecenter/${gameId}/boxscore`,
+      `https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`
+    ];
+    const [box, summary] = await Promise.allSettled([apiFetch(boxUrl), apiFetch(summaryUrl)]);
+    const boxData = box.status === 'fulfilled' ? box.value : null;
+    const summaryData = summary.status === 'fulfilled' ? summary.value : null;
+    if (!boxData) throw new Error('NHL API failed');
+    _bsCache[ck] = {source:'nhl', data: boxData, summary: summaryData};
+    return _bsCache[ck];
+  } catch(e) {
+    console.error('fetchNhlBoxScore failed:', gameId, e);
+    return null; // don't cache failure
+  }
+}
+
+function renderNhlBoxScore(result, homeLogo, awayLogo) {
+  const d = result.data;
+  if (!d) return '<div class="bs-error">Could not parse NHL data.</div>';
+
+  const awayTeam = d.awayTeam || {};
+  const homeTeam = d.homeTeam || {};
+  const awayName = awayTeam.name?.default || awayTeam.commonName?.default || 'Away';
+  const homeName = homeTeam.name?.default || homeTeam.commonName?.default || 'Home';
+  const awayScore = awayTeam.score ?? '—';
+  const homeScore = homeTeam.score ?? '—';
+  const awaySOG = awayTeam.sog ?? '—';
+  const homeSOG = homeTeam.sog ?? '—';
+
+  // Linescore by period
+  const periodScores = d.linescore?.byPeriod || [];
+  const numP = periodScores.length;
+  const periodNames = ['1st','2nd','3rd','OT','2OT'];
+  const periodHeaders = periodScores.map((_,i) => `<th>${periodNames[i]||('OT'+(i-2))}</th>`).join('');
+  const awayPeriods = periodScores.map(p => `<td>${p.away ?? '-'}</td>`).join('');
+  const homePeriods = periodScores.map(p => `<td>${p.home ?? '-'}</td>`).join('');
+
+  const aLogoHtml = awayLogo ? `<img class="ls-logo" src="${awayLogo}" alt="">` : '';
+  const hLogoHtml = homeLogo ? `<img class="ls-logo" src="${homeLogo}" alt="">` : '';
+
+  const linescore = numP > 0 ? `
+    <div class="ls-wrap"><table class="ls-table">
+      <thead><tr><th class="ls-team-col">Team</th>${periodHeaders}<th class="ls-tot">T</th><th class="ls-rhe-head">SOG</th></tr></thead>
+      <tbody>
+        <tr><td class="ls-team-col">${aLogoHtml}<span class="ls-name">${esc(awayName)}</span></td>${awayPeriods}<td class="ls-tot-val">${awayScore}</td><td class="ls-rhe">${awaySOG}</td></tr>
+        <tr><td class="ls-team-col">${hLogoHtml}<span class="ls-name">${esc(homeName)}</span></td>${homePeriods}<td class="ls-tot-val">${homeScore}</td><td class="ls-rhe">${homeSOG}</td></tr>
+      </tbody>
+    </table></div>` : '';
+
+  // Goals / scoring summary from landing data or boxscore
+  const goals = result.summary?.summary?.scoring || d.summary?.scoring || [];
+  let goalsHtml = '';
+  if (goals.length) {
+    goalsHtml = goals.map(period => {
+      const pName = periodNames[period.periodDescriptor?.number-1] || period.periodDescriptor?.periodType || '';
+      const goalRows = (period.goals||[]).map(g => {
+        const scorer = g.name?.default || (g.firstName?.default+' '+g.lastName?.default) || 'Unknown';
+        const assists = (g.assists||[]).map(a => a.name?.default || (a.firstName?.default+' '+a.lastName?.default)).join(', ');
+        const team = g.teamAbbrev?.default || '';
+        const time = g.timeInPeriod || '';
+        const gwg = g.gameWinningGoal ? ' <span style="color:var(--gold);font-size:10px">(GWG)</span>' : '';
+        const ppg = g.goalModifier === 'pp' ? ' <span style="color:#4fc3f7;font-size:10px">(PP)</span>' : '';
+        const shg = g.goalModifier === 'sh' ? ' <span style="color:var(--red);font-size:10px">(SH)</span>' : '';
+        return `<tr>
+          <td style="white-space:nowrap;color:var(--text-dim);font-size:11px">${time}</td>
+          <td style="font-size:11px;font-weight:600;color:var(--text-dim)">${team}</td>
+          <td><span class="bs-player-name">${esc(scorer)}</span>${gwg}${ppg}${shg}${assists?`<br><span style="font-size:10px;color:var(--text-dim)">${esc(assists)}</span>`:''}</td>
+        </tr>`;
+      }).join('');
+      return goalRows ? `
+        <div class="bs-stat-section">
+          <div class="bs-stat-heading">${pName} Period Goals</div>
+          <table class="bs-stat-table"><thead><tr><th>Time</th><th>Team</th><th>Goal</th></tr></thead><tbody>${goalRows}</tbody></table>
+        </div>` : '';
+    }).join('');
+  }
+
+  // Player stats
+  function renderNhlPlayers(teamKey) {
+    const teamPlayers = d.playerByGameStats?.[teamKey] || {};
+    let html = '';
+    // Forwards + Defense
+    const skaters = [...(teamPlayers.forwards||[]), ...(teamPlayers.defense||[])];
+    if (skaters.length) {
+      const rows = skaters.map(p => {
+        const n = p.name?.default || '';
+        const pos = p.position || '';
+        return `<tr>
+          <td><span class="bs-player-name">${esc(n)}</span><span class="bs-player-pos">${pos}</span></td>
+          <td>${p.goals??0}</td><td>${p.assists??0}</td><td>${p.points??0}</td>
+          <td>${p.plusMinus!=null?(p.plusMinus>0?'+':'')+p.plusMinus:'—'}</td>
+          <td>${p.shots??0}</td><td>${p.toi||'—'}</td>
+        </tr>`;
+      }).join('');
+      html += `<div class="bs-stat-section"><div class="bs-stat-heading">Skaters</div>
+        <table class="bs-stat-table"><thead><tr><th>Player</th><th>G</th><th>A</th><th>P</th><th>+/-</th><th>S</th><th>TOI</th></tr></thead>
+        <tbody>${rows}</tbody></table></div>`;
+    }
+    // Goalies
+    const goalies = teamPlayers.goalies || [];
+    if (goalies.length) {
+      const rows = goalies.map(p => {
+        const n = p.name?.default || '';
+        return `<tr>
+          <td><span class="bs-player-name">${esc(n)}</span><span class="bs-player-pos">G</span></td>
+          <td>${p.saveShotsAgainst||'—'}</td><td>${p.savePercentage!=null?(+p.savePercentage).toFixed(3):'—'}</td>
+          <td>${p.goalsAgainst??'—'}</td><td>${p.toi||'—'}</td>
+        </tr>`;
+      }).join('');
+      html += `<div class="bs-stat-section"><div class="bs-stat-heading">Goalies</div>
+        <table class="bs-stat-table"><thead><tr><th>Player</th><th>SA</th><th>SV%</th><th>GA</th><th>TOI</th></tr></thead>
+        <tbody>${rows}</tbody></table></div>`;
+    }
+    return html;
+  }
+
+  const awayPanel = renderNhlPlayers('awayTeam');
+  const homePanel = renderNhlPlayers('homeTeam');
+  const hasTabs = awayPanel || homePanel;
+
+  return `${linescore}`;
+}
+
+async function fetchMlbBoxScore(gameId) {
+  const ck = `mlb::${gameId}`;
+  if (_bsCache[ck]) return _bsCache[ck];
+  try {
+    const [ls, bs] = await Promise.all([
+      apiFetch(`https://statsapi.mlb.com/api/v1/game/${gameId}/linescore`),
+      apiFetch(`https://statsapi.mlb.com/api/v1/game/${gameId}/boxscore`)
+    ]);
+    _bsCache[ck] = {source:'mlb', ls, bs};
+    return _bsCache[ck];
+  } catch(e) {
+    console.error('fetchMlbBoxScore failed:', gameId, e);
+    return null; // don't cache failure
+  }
+}
+
+function renderMlbBoxScore(data, homeLogo, awayLogo) {
+  const {ls, bs} = data;
+  const innings = ls.innings || [];
+  const away = bs.teams?.away;
+  const home = bs.teams?.home;
+  if (!away || !home) return '<div class="bs-error">Could not parse box score data.</div>';
+
+  const awayName = away.team?.name || 'Away';
+  const homeName = home.team?.name || 'Home';
+  const awayR = ls.teams?.away?.runs ?? '—';
+  const homeR = ls.teams?.home?.runs ?? '—';
+  const awayH = ls.teams?.away?.hits ?? '—';
+  const homeH = ls.teams?.home?.hits ?? '—';
+  const awayE = ls.teams?.away?.errors ?? '—';
+  const homeE = ls.teams?.home?.errors ?? '—';
+
+  const inningHeaders = innings.map((_,i) => `<th>${i+1}</th>`).join('');
+  const awayInnings = innings.map(inn => `<td>${inn.away?.runs ?? '-'}</td>`).join('');
+  const homeInnings = innings.map(inn => `<td>${inn.home?.runs ?? '-'}</td>`).join('');
+
+  const aLogoHtml = awayLogo ? `<img class="ls-logo" src="${awayLogo}" alt="">` : '';
+  const hLogoHtml = homeLogo ? `<img class="ls-logo" src="${homeLogo}" alt="">` : '';
+
+  const linescore = `
+    <div class="ls-wrap"><table class="ls-table">
+      <thead><tr><th class="ls-team-col">Team</th>${inningHeaders}<th class="ls-rhe-head">R</th><th class="ls-rhe-head">H</th><th class="ls-rhe-head">E</th></tr></thead>
+      <tbody>
+        <tr><td class="ls-team-col">${aLogoHtml}<span class="ls-name">${esc(awayName)}</span></td>${awayInnings}<td class="ls-tot-val">${awayR}</td><td class="ls-rhe">${awayH}</td><td class="ls-rhe">${awayE}</td></tr>
+        <tr><td class="ls-team-col">${hLogoHtml}<span class="ls-name">${esc(homeName)}</span></td>${homeInnings}<td class="ls-tot-val">${homeR}</td><td class="ls-rhe">${homeH}</td><td class="ls-rhe">${homeE}</td></tr>
+      </tbody>
+    </table></div>`;
+
+  function playerRows(players, statGroup, cols, battingOrder) {
+    let playerList = Object.values(players).filter(p => {
+      const s = p.stats?.[statGroup];
+      if (!s) return false;
+      if (statGroup === 'batting') return (s.atBats > 0 || s.plateAppearances > 0);
+      if (statGroup === 'pitching') return (s.inningsPitched && s.inningsPitched !== '0.0');
+      return false;
+    });
+    if (battingOrder) playerList.sort((a,b) => (a.battingOrder||999) - (b.battingOrder||999));
+    else playerList.sort((a,b) => (a.gameOrder||999) - (b.gameOrder||999));
+    if (!playerList.length) return '';
+    const colHeaders = cols.map(c => `<th>${c.label}</th>`).join('');
+    const rows = playerList.map(p => {
+      const s = p.stats?.[statGroup] || {};
+      const tds = cols.map(c => `<td>${s[c.key] ?? '—'}</td>`).join('');
+      const pos = p.allPositions?.map(x=>x.abbreviation).join('/') || p.position?.abbreviation || '';
+      // Add pitcher decision indicator
+      let nameStyle = '', decLabel = '';
+      if (statGroup === 'pitching') {
+        const note = p.stats?.pitching?.note || '';
+        if (note === 'W') { nameStyle = 'color:var(--green)'; decLabel = ' (W)'; }
+        else if (note === 'L') { nameStyle = 'color:var(--red)'; decLabel = ' (L)'; }
+        else if (note === 'S') { nameStyle = 'color:#4fc3f7'; decLabel = ' (S)'; }
+      }
+      return `<tr><td><span class="bs-player-name" style="${nameStyle}">${esc(p.person?.fullName||'')}${decLabel?`<span style="font-size:10px">${decLabel}</span>`:''}</span><span class="bs-player-pos">${pos}</span></td>${tds}</tr>`;
+    }).join('');
+    return `<table class="bs-stat-table"><thead><tr><th>Player</th>${colHeaders}</tr></thead><tbody>${rows}</tbody></table>`;
+  }
+
+  // Simplified batting cols — no H-AB, just AB and H separately to avoid wrapping
+  const BATTING_COLS = [
+    {label:'AB',key:'atBats'},{label:'R',key:'runs'},{label:'H',key:'hits'},
+    {label:'RBI',key:'rbi'},{label:'HR',key:'homeRuns'},{label:'BB',key:'baseOnBalls'},{label:'K',key:'strikeOuts'}
+  ];
+  // Simplified pitching cols — no PC-ST to avoid wrapping  
+  const PITCHING_COLS = [
+    {label:'IP',key:'inningsPitched'},{label:'H',key:'hits'},{label:'R',key:'runs'},
+    {label:'ER',key:'earnedRuns'},{label:'BB',key:'baseOnBalls'},{label:'K',key:'strikeOuts'}
+  ];
+
+  function teamPanel(teamData) {
+    const players = teamData.players || {};
+    const batting = playerRows(players, 'batting', BATTING_COLS, true);
+    const pitching = playerRows(players, 'pitching', PITCHING_COLS, false);
+    return `
+      ${batting ? `<div class="bs-stat-section"><div class="bs-stat-heading">Batting</div>${batting}</div>` : ''}
+      ${pitching ? `<div class="bs-stat-section"><div class="bs-stat-heading">Pitching</div>${pitching}</div>` : ''}`;
+  }
+
+  const awayPanel = teamPanel(away);
+  const homePanel = teamPanel(home);
+
+  return `
+    ${linescore}
+    <div class="bs-tabs">
+      <button class="bs-tab active" onclick="switchBsTab(this,'bs-away-panel')">${esc(awayName)}</button>
+      <button class="bs-tab" onclick="switchBsTab(this,'bs-home-panel')">${esc(homeName)}</button>
+    </div>
+    <div id="bs-away-panel">${awayPanel}</div>
+    <div id="bs-home-panel" style="display:none">${homePanel}</div>`;
+}
+
+function renderEspnBoxScore(data, homeLogo, awayLogo, sport) {
   const d = data.data;
   const comp = d?.header?.competitions?.[0];
   const boxscore = d?.boxscore;
@@ -1029,9 +1658,21 @@ function renderEspnBoxScore(data, homeLogo, awayLogo) {
   const aLogoHtml = awayLogo ? `<img class="ls-logo" src="${awayLogo}" alt="">` : '';
   const hLogoHtml = homeLogo ? `<img class="ls-logo" src="${homeLogo}" alt="">` : '';
 
-  // Period headers — innings for baseball
+  // Period headers — innings for baseball, quarters for football, etc.
   let periodHeaders = '';
-  for (let i = 0; i < numPeriods; i++) periodHeaders += `<th>${i+1}</th>`;
+  const isBaseball = sport === 'baseball';
+  const isHockey = sport === 'hockey';
+  const isFootball = sport === 'football';
+  const isSoccer = sport === 'soccer';
+  if (isHockey) {
+    const periodNames = ['1st','2nd','3rd'];
+    for (let i = 0; i < numPeriods; i++) periodHeaders += `<th>${periodNames[i] || ('OT'+(i-2))}</th>`;
+  } else if (isSoccer) {
+    const halfNames = ['1st','2nd'];
+    for (let i = 0; i < numPeriods; i++) periodHeaders += `<th>${halfNames[i] || ('ET'+(i-1))}</th>`;
+  } else {
+    for (let i = 0; i < numPeriods; i++) periodHeaders += `<th>${i+1}</th>`;
+  }
 
   const awayInnings = awayLine.map(l => `<td>${l.displayValue ?? '-'}</td>`).join('');
   const homeInnings = homeLine.map(l => `<td>${l.displayValue ?? '-'}</td>`).join('');
@@ -1084,18 +1725,24 @@ function renderEspnBoxScore(data, homeLogo, awayLogo) {
         <thead><tr>
           <th class="ls-team-col">Team</th>
           ${periodHeaders}
-          <th class="ls-rhe-head">R</th><th class="ls-rhe-head">H</th><th class="ls-rhe-head">E</th>
+          ${isBaseball
+            ? `<th class="ls-rhe-head">R</th><th class="ls-rhe-head">H</th><th class="ls-rhe-head">E</th>`
+            : `<th class="ls-tot">T</th>`}
         </tr></thead>
         <tbody>
           <tr>
             <td class="ls-team-col">${aLogoHtml}<span class="ls-name">${esc(awayName)}</span></td>
             ${awayInnings}
-            <td class="ls-tot-val">${awayR}</td><td class="ls-rhe">${awayH}</td><td class="ls-rhe">${awayE}</td>
+            ${isBaseball
+              ? `<td class="ls-tot-val">${awayR}</td><td class="ls-rhe">${awayH}</td><td class="ls-rhe">${awayE}</td>`
+              : `<td class="ls-tot-val">${awayR}</td>`}
           </tr>
           <tr>
             <td class="ls-team-col">${hLogoHtml}<span class="ls-name">${esc(homeName)}</span></td>
             ${homeInnings}
-            <td class="ls-tot-val">${homeR}</td><td class="ls-rhe">${homeH}</td><td class="ls-rhe">${homeE}</td>
+            ${isBaseball
+              ? `<td class="ls-tot-val">${homeR}</td><td class="ls-rhe">${homeH}</td><td class="ls-rhe">${homeE}</td>`
+              : `<td class="ls-tot-val">${homeR}</td>`}
           </tr>
         </tbody>
       </table>
@@ -1168,118 +1815,203 @@ function renderEspnBoxScore(data, homeLogo, awayLogo) {
     ` : ''}`;
 }
 
-function renderMlbBoxScore(data, homeLogo, awayLogo) {
-  const {ls, bs} = data;
-  const innings = ls.innings || [];
-  const away = bs.teams?.away;
-  const home = bs.teams?.home;
-  if (!away || !home) return '<div class="bs-error">Could not parse box score data.</div>';
+function renderSoccerBoxScore(data, homeLogo, awayLogo) {
+  const d = data.data;
+  const comp = d?.header?.competitions?.[0];
+  if (!comp) return '<div class="bs-error">Could not parse match data.</div>';
 
-  const awayName = away.team?.name || 'Away';
-  const homeName = home.team?.name || 'Home';
-  const awayR = ls.teams?.away?.runs ?? '—';
-  const homeR = ls.teams?.home?.runs ?? '—';
-  const awayH = ls.teams?.away?.hits ?? '—';
-  const homeH = ls.teams?.home?.hits ?? '—';
-  const awayE = ls.teams?.away?.errors ?? '—';
-  const homeE = ls.teams?.home?.errors ?? '—';
+  const teams = comp.competitors || [];
+  const awayComp = teams.find(t => t.homeAway === 'away') || teams[1] || {};
+  const homeComp = teams.find(t => t.homeAway === 'home') || teams[0] || {};
+  const awayName = awayComp.team?.displayName || 'Away';
+  const homeName = homeComp.team?.displayName || 'Home';
+  const awayScore = awayComp.score ?? '—';
+  const homeScore = homeComp.score ?? '—';
+  const awayTeamId = awayComp.team?.id || awayComp.id;
+  const homeTeamId = homeComp.team?.id || homeComp.id;
 
-  // Linescore table
-  const inningHeaders = innings.map((_,i) => `<th>${i+1}</th>`).join('');
-  const awayInnings = innings.map(inn => `<td>${inn.away?.runs ?? '-'}</td>`).join('');
-  const homeInnings = innings.map(inn => `<td>${inn.home?.runs ?? '-'}</td>`).join('');
+  // Roster data — ESPN puts it in d.rosters[] not in header.competitors
+  // d.rosters = [{team:{id}, roster:[{athlete,starter,jersey,position,...}]}]
+  // Fall back to boxscore.players[].roster if rosters array not present
+  function getRoster(teamId) {
+    // Try d.rosters first
+    if (Array.isArray(d?.rosters)) {
+      const t = d.rosters.find(r => String(r.team?.id) === String(teamId));
+      if (t?.roster?.length) return t.roster;
+    }
+    // Try d.boxscore.players
+    if (Array.isArray(d?.boxscore?.players)) {
+      const t = d.boxscore.players.find(r => String(r.team?.id) === String(teamId));
+      if (t?.statistics) {
+        // boxscore.players entries have statistics[] not roster[]
+        // Convert to roster-like format
+        return t.statistics.flatMap(s => s.athletes || []).map(a => ({
+          athlete: a.athlete,
+          starter: a.starter ?? true,
+          jersey: a.athlete?.jersey,
+          position: a.athlete?.position,
+        }));
+      }
+    }
+    // Last resort: comp competitor's own roster field
+    return awayTeamId === teamId ? (awayComp.roster || []) : (homeComp.roster || []);
+  }
 
+  const awayRoster = getRoster(awayTeamId);
+  const homeRoster = getRoster(homeTeamId);
+
+  // Linescore
+  const awayGoals = (awayComp.linescores||[]).map(s=>`<td>${s.displayValue??'-'}</td>`).join('');
+  const homeGoals = (homeComp.linescores||[]).map(s=>`<td>${s.displayValue??'-'}</td>`).join('');
+  const numHalves = Math.max((awayComp.linescores||[]).length,(homeComp.linescores||[]).length);
+  const halfHeaders = ['1st','2nd','ET1','ET2'].slice(0,numHalves).map(h=>`<th>${h}</th>`).join('');
   const aLogoHtml = awayLogo ? `<img class="ls-logo" src="${awayLogo}" alt="">` : '';
   const hLogoHtml = homeLogo ? `<img class="ls-logo" src="${homeLogo}" alt="">` : '';
+  const linescore = numHalves > 0 ? `
+    <div class="ls-wrap"><table class="ls-table">
+      <thead><tr><th class="ls-team-col">Team</th>${halfHeaders}<th class="ls-tot">T</th></tr></thead>
+      <tbody>
+        <tr><td class="ls-team-col">${aLogoHtml}<span class="ls-name">${esc(awayName)}</span></td>${awayGoals}<td class="ls-tot-val">${awayScore}</td></tr>
+        <tr><td class="ls-team-col">${hLogoHtml}<span class="ls-name">${esc(homeName)}</span></td>${homeGoals}<td class="ls-tot-val">${homeScore}</td></tr>
+      </tbody>
+    </table></div>` : '';
 
-  const linescore = `
-    <div class="ls-wrap">
-      <table class="ls-table">
-        <thead><tr>
-          <th class="ls-team-col">Team</th>
-          ${inningHeaders}
-          <th class="ls-rhe-head">R</th><th class="ls-rhe-head">H</th><th class="ls-rhe-head">E</th>
-        </tr></thead>
-        <tbody>
-          <tr>
-            <td class="ls-team-col">${aLogoHtml}<span class="ls-name">${esc(awayName)}</span></td>
-            ${awayInnings}
-            <td class="ls-tot-val">${awayR}</td>
-            <td class="ls-rhe">${awayH}</td>
-            <td class="ls-rhe">${awayE}</td>
-          </tr>
-          <tr>
-            <td class="ls-team-col">${hLogoHtml}<span class="ls-name">${esc(homeName)}</span></td>
-            ${homeInnings}
-            <td class="ls-tot-val">${homeR}</td>
-            <td class="ls-rhe">${homeH}</td>
-            <td class="ls-rhe">${homeE}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>`;
-
-  // Player stats — batting & pitching for each team
-  function playerRows(players, statGroup, cols, battingOrder) {
-    // MLB API: players keyed as "ID123456", stats at player.stats.batting or .pitching
-    let playerList = Object.values(players).filter(p => {
-      const s = p.stats?.[statGroup];
-      if (!s) return false;
-      if (statGroup === 'batting') return (s.atBats > 0 || s.plateAppearances > 0);
-      if (statGroup === 'pitching') return (s.inningsPitched && s.inningsPitched !== '0.0');
-      return false;
-    });
-    // Sort batters by batting order, pitchers by appearance order (gameOrder)
-    if (battingOrder) {
-      playerList.sort((a,b) => (a.battingOrder||999) - (b.battingOrder||999));
-    } else {
-      playerList.sort((a,b) => (a.gameOrder||999) - (b.gameOrder||999));
+  // Build an event map per player for goals/cards/subs
+  // ESPN keyEvents have: type.id (numeric), type.text, athletesInvolved[], clock.displayValue
+  // Type IDs: 73=Goal, 74=Own Goal, 77=Red Card, 93=Yellow Card, 78=Substitution
+  // Also check scoreValue>0 as goal fallback, and text-based matching
+  const playerEvents = {};
+  const keyEvents = d?.keyEvents || comp?.keyEvents || [];
+  const addEvent = (athleteId, type, time) => {
+    if (!athleteId) return;
+    const k = String(athleteId);
+    if (!playerEvents[k]) playerEvents[k] = [];
+    // Avoid duplicate events
+    if (!playerEvents[k].some(e => e.type === type && e.time === time)) {
+      playerEvents[k].push({type, time});
     }
-    if (!playerList.length) return '';
-    const colHeaders = cols.map(c => `<th>${c.label}</th>`).join('');
-    const rows = playerList.map(p => {
-      const s = p.stats?.[statGroup] || {};
-      const tds = cols.map(c => `<td>${s[c.key] ?? '—'}</td>`).join('');
-      const pos = p.allPositions?.map(x=>x.abbreviation).join('/') || p.position?.abbreviation || '';
-      return `<tr>
-        <td><span class="bs-player-name">${esc(p.person?.fullName||'')}</span><span class="bs-player-pos">${pos}</span></td>
-        ${tds}
-      </tr>`;
+  };
+  keyEvents.forEach(ev => {
+    const typeId = ev.type?.id ? String(ev.type.id) : '';
+    const typeText = (ev.type?.text || ev.type?.abbreviation || ev.text || '').toLowerCase();
+    const time = ev.clock?.displayValue || '';
+    const involved = ev.athletesInvolved || [];
+
+    const isGoal = typeId === '73' || typeId === '58' || (!typeText.includes('own') && (typeText.includes('goal') || (ev.scoreValue > 0)));
+    const isOwnGoal = typeId === '74' || typeText.includes('own goal');
+    const isYellow = typeId === '93' || typeId === '32' || typeText.includes('yellow');
+    const isRed = typeId === '77' || typeId === '33' || (typeText.includes('red') && !typeText.includes('card') || typeText === 'red card');
+    const isSub = typeId === '78' || typeId === '36' || typeText.includes('substitut') || typeText.includes(' sub');
+
+    if (isOwnGoal) {
+      addEvent(involved[0]?.id, 'ownGoal', time);
+    } else if (isGoal) {
+      addEvent(involved[0]?.id, 'goal', time);
+    }
+    if (isYellow) addEvent(involved[0]?.id, 'yellow', time);
+    if (isRed)    addEvent(involved[0]?.id, 'red', time);
+    if (isSub) {
+      // ESPN: involved[0] is the player coming ON, involved[1] is going OFF
+      addEvent(involved[0]?.id, 'subOn', time);
+      addEvent(involved[1]?.id, 'subOff', time);
+    }
+  });
+
+  // Also seed playerEvents directly from roster player attributes
+  // ESPN puts subbedIn/subbedOut/yellowCard/redCard/goals on each roster entry
+  const seedFromRoster = (roster) => {
+    (roster || []).forEach(p => {
+      const id = p.athlete?.id;
+      if (!id) return;
+      // goals
+      const goals = p.goals ?? p.statistics?.goals ?? 0;
+      for (let i = 0; i < goals; i++) addEvent(id, 'goal', '');
+      // yellow card
+      if (p.yellowCard || p.yellowCards > 0 || p.statistics?.yellowCards > 0) addEvent(id, 'yellow', '');
+      // red card
+      if (p.redCard || p.redCards > 0 || p.statistics?.redCards > 0) addEvent(id, 'red', '');
+      // substituted in/out
+      if (p.subbedIn || p.subIn) addEvent(id, 'subOn', p.subMinute ? p.subMinute+"'" : '');
+      if (p.subbedOut || p.subOut) addEvent(id, 'subOff', p.subMinute ? p.subMinute+"'" : '');
+    });
+  };
+  seedFromRoster(awayRoster);
+  seedFromRoster(homeRoster);
+
+  // Render event badges for a player
+  function playerBadges(athleteId) {
+    const evts = playerEvents[String(athleteId)] || [];
+    return evts.map(e => {
+      if (e.type === 'goal')     return `<span style="font-size:12px" title="Goal ${e.time}">⚽</span>`;
+      if (e.type === 'ownGoal')  return `<span style="font-size:11px;opacity:0.6" title="Own Goal ${e.time}">⚽</span>`;
+      if (e.type === 'yellow')   return `<span style="display:inline-block;width:9px;height:13px;background:#f5c518;border-radius:1px;vertical-align:middle;margin:0 1px" title="Yellow Card ${e.time}"></span>`;
+      if (e.type === 'red')      return `<span style="display:inline-block;width:9px;height:13px;background:#e53935;border-radius:1px;vertical-align:middle;margin:0 1px" title="Red Card ${e.time}"></span>`;
+      if (e.type === 'subOn')    return `<span style="color:#4caf50;font-size:11px;font-weight:700" title="Substituted on ${e.time}">&#x2191;</span>`;
+      if (e.type === 'subOff')   return `<span style="color:var(--text-dim);font-size:11px;font-weight:700" title="Substituted off ${e.time}">&#x2193;</span>`;
+      return '';
     }).join('');
-    return `<table class="bs-stat-table"><thead><tr><th>Player</th>${colHeaders}</tr></thead><tbody>${rows}</tbody></table>`;
   }
 
-  const BATTING_COLS = [
-    {label:'AB',key:'atBats'},{label:'R',key:'runs'},{label:'H',key:'hits'},
-    {label:'RBI',key:'rbi'},{label:'BB',key:'baseOnBalls'},{label:'SO',key:'strikeOuts'},
-    {label:'HR',key:'homeRuns'}
-  ];
-  const PITCHING_COLS = [
-    {label:'IP',key:'inningsPitched'},{label:'H',key:'hits'},{label:'R',key:'runs'},
-    {label:'ER',key:'earnedRuns'},{label:'BB',key:'baseOnBalls'},{label:'SO',key:'strikeOuts'}
-  ];
+  // Render one team's lineup ESPN-style
+  function renderTeamLineup(roster) {
+    if (!roster?.length) return '<div style="color:var(--text-dim);font-size:13px;padding:12px 0">No lineup data available.</div>';
 
-  function teamPanel(teamData, teamName) {
-    const players = teamData.players || {};
-    const battingRows = playerRows(players, 'batting', BATTING_COLS, true);
-    const pitchingRows = playerRows(players, 'pitching', PITCHING_COLS, false);
-    return `
-      ${battingRows ? `<div class="bs-stat-section"><div class="bs-stat-heading">Batting</div>${battingRows}</div>` : ''}
-      ${pitchingRows ? `<div class="bs-stat-section"><div class="bs-stat-heading">Pitching</div>${pitchingRows}</div>` : ''}`;
+    const starters = roster.filter(p => p.starter);
+    const subs = roster.filter(p => !p.starter);
+
+    const playerRow = (p) => {
+      const name = p.athlete?.displayName || '';
+      const jersey = p.jersey || '';
+      const id = p.athlete?.id || '';
+      const badges = id ? playerBadges(id) : '';
+      // Find any sub-on player for this starter
+      const subOnPlayer = subs.find(s => {
+        const sid = s.athlete?.id;
+        return sid && (playerEvents[String(sid)] || []).some(e => e.type === 'subOn') &&
+          (playerEvents[String(id)] || []).some(e => e.type === 'subOff');
+      });
+      return `<div style="display:flex;align-items:center;padding:6px 0;border-bottom:1px solid var(--border)">
+        <span style="color:var(--text-dim);font-size:11px;width:22px;flex-shrink:0">${esc(jersey)}</span>
+        <span style="flex:1;font-size:13px"><span class="bs-player-name">${esc(name)}</span>${badges ? ' '+badges : ''}</span>
+      </div>`;
+    };
+
+    // Find which subs actually came on (have subOn event)
+    const activeSubs = subs.filter(p => {
+      const id = p.athlete?.id;
+      return id && (playerEvents[String(id)] || []).some(e => e.type === 'subOn');
+    });
+    // Unused subs (on bench but didn't play)
+    const unusedSubs = subs.filter(p => {
+      const id = p.athlete?.id;
+      return !id || !(playerEvents[String(id)] || []).some(e => e.type === 'subOn');
+    });
+
+    let html = starters.map(playerRow).join('');
+    if (activeSubs.length) {
+      html += `<div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);padding:10px 0 4px">Substitutes</div>`;
+      html += activeSubs.map(playerRow).join('');
+    }
+    if (unusedSubs.length) {
+      html += `<div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);padding:10px 0 4px">Not Used</div>`;
+      html += unusedSubs.map(playerRow).join('');
+    }
+    return html;
   }
 
-  const awayPanel = teamPanel(away, awayName);
-  const homePanel = teamPanel(home, homeName);
+  const awayLineup = renderTeamLineup(awayRoster);
+  const homeLineup = renderTeamLineup(homeRoster);
 
   return `
     ${linescore}
-    <div class="bs-tabs">
+    <div class="bs-tabs" style="margin-top:16px">
       <button class="bs-tab active" onclick="switchBsTab(this,'bs-away-panel')">${esc(awayName)}</button>
       <button class="bs-tab" onclick="switchBsTab(this,'bs-home-panel')">${esc(homeName)}</button>
     </div>
-    <div id="bs-away-panel">${awayPanel}</div>
-    <div id="bs-home-panel" style="display:none">${homePanel}</div>`;
+    <div id="bs-away-panel" style="margin-top:4px">${awayLineup}</div>
+    <div id="bs-home-panel" style="display:none;margin-top:4px">${homeLineup}</div>`;
 }
+
 
 function switchBsTab(btn, panelId) {
   btn.closest('.modal-content').querySelectorAll('.bs-tab').forEach(t => t.classList.remove('active'));
@@ -1289,6 +2021,7 @@ function switchBsTab(btn, panelId) {
   const panel = document.getElementById(panelId);
   if (panel) panel.style.display = '';
 }
+
 
 // ═══════════════════════════════════════════
 //  MODAL
@@ -1346,19 +2079,29 @@ async function openModal(id){
         </div>
         <div class="modal-divider" style="margin-top:16px"></div>` : ''}
       ${pills?`<div class="modal-meta-row" style="margin-top:16px">${pills}</div>`:''}
-      ${ev.notes?`<div class="modal-notes-block"><div class="modal-notes-label">Notes</div><div class="modal-notes-text">${esc(ev.notes)}</div></div>`:''}
+      <div id="notesBlock">${ev.notes?`<div class="modal-notes-block"><div class="modal-notes-label">Notes</div><div class="modal-notes-text" id="notesText">${esc(ev.notes).replace(/\n/g,'<br>')}</div></div>`:''}</div>
     </div>`;
 
   document.getElementById('detailModal').classList.add('open');
   document.body.style.overflow='hidden';
 
+  // Determine fetch strategy based on URL source
+  let bsPromise = Promise.resolve(null);
+  if (bsUrlInfo) {
+    if (bsUrlInfo.source === 'nhl') {
+      bsPromise = fetchNhlBoxScore(bsUrlInfo.gameId);
+    } else if (bsUrlInfo.source === 'espn') {
+      bsPromise = fetchEspnBoxScore(bsUrlInfo.gameId, espnSportPath(bsUrlInfo.sport || ev.type, ev));
+    } else if (bsUrlInfo.source === 'mlb') {
+      bsPromise = fetchMlbBoxScore(bsUrlInfo.gameId);
+    }
+  }
+
   // Logos + box score in parallel
   const fetchTasks = [
     ev.homeLogoUrl ? Promise.resolve(ev.homeLogoUrl) : getTeamLogo(home,sport),
     away ? (ev.awayLogoUrl ? Promise.resolve(ev.awayLogoUrl) : getTeamLogo(away,sport)) : Promise.resolve(null),
-    bsUrlInfo
-      ? fetchEspnBoxScore(bsUrlInfo.gameId, espnSportPath(bsUrlInfo.sport || ev.type))
-      : Promise.resolve(null),
+    bsPromise,
   ];
 
   const results = await Promise.all(fetchTasks);
@@ -1415,14 +2158,96 @@ async function openModal(id){
   if (bsSpin) bsSpin.remove();
   const bsEl = document.getElementById('bsContent');
   if (bsEl) {
-    if (bsData?.source === 'espn') {
-      const rendered = renderEspnBoxScore(bsData, homeLogo, awayLogo);
-      bsEl.innerHTML = rendered;
+    if (bsData?.source === 'nhl') {
+      bsEl.innerHTML = renderNhlBoxScore(bsData, finalHomeLogo, finalAwayLogo);
+    } else if (bsData?.source === 'mlb') {
+      bsEl.innerHTML = renderMlbBoxScore(bsData, finalHomeLogo, finalAwayLogo);
+    } else if (bsData?.source === 'espn') {
+      if (sport === 'soccer') {
+        bsEl.innerHTML = renderSoccerBoxScore(bsData, finalHomeLogo, finalAwayLogo);
+      } else {
+        bsEl.innerHTML = renderEspnBoxScore(bsData, finalHomeLogo, finalAwayLogo, sport);
+      }
     } else if (hasBoxScore) {
-      // Fetch failed — show link as fallback
       bsEl.innerHTML = `<a class="bs-link-btn" href="${esc(effectiveBsUrl)}" target="_blank" rel="noopener">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         View Box Score ↗</a>`;
+    }
+
+    // Scrape player names directly from the rendered DOM — no API re-fetch needed.
+    // If the names are showing on screen, grab them right from the HTML.
+    if (bsData) {
+      const cacheKey = ev.stableKey || String(ev.id);
+      const scrapeNames = (panelId) => {
+        const panel = bsEl.querySelector('#' + panelId);
+        if (!panel) return [];
+        return [...panel.querySelectorAll('.bs-player-name')].map(el =>
+          [...el.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent.trim()).join('').trim()
+        ).filter(Boolean);
+      };
+      const awayNames = scrapeNames('bs-away-panel');
+      const homeNames = scrapeNames('bs-home-panel');
+      if (awayNames.length || homeNames.length) {
+        // Always update — overwrite stale/empty cache entry
+        _playerCache[cacheKey] = {away: awayNames, home: homeNames};
+        savePlayerCache();
+        updateStats();
+      }
+    }
+  } // end if(bsEl)
+
+  // Inject game info (time, attendance) into Notes from ESPN data
+  if (bsData?.source === 'espn' || bsData?.source === 'nhl') {
+    const extraNotes = [];
+    let gameDate, attendance, durationMins;
+    if (bsData.source === 'espn') {
+      const bsComp2 = bsData.data?.header?.competitions?.[0];
+      gameDate = bsComp2?.date;
+      attendance = bsData.data?.gameInfo?.attendance || bsComp2?.attendance;
+      // ESPN stores game time/duration in several possible fields
+      const parseDurStr = (s) => {
+        if (!s) return 0;
+        if (typeof s === 'number') return s;
+        if (typeof s === 'string') {
+          // "2:20" or "2h 20m" or "140" (minutes)
+          if (s.includes(':')) { const [h,m]=s.split(':').map(Number); return h*60+(m||0); }
+          if (s.includes('h')) { const [h,m]=(s.match(/(\d+)h\s*(\d+)?m?/)||[]).slice(1).map(Number); return (h||0)*60+(m||0); }
+          const n = parseInt(s); if (n > 0 && n < 500) return n; // bare minutes
+        }
+        return 0;
+      };
+      const gi = bsData.data?.gameInfo || {};
+      durationMins = parseDurStr(gi.gameTime) || parseDurStr(gi.duration) || parseDurStr(gi.gameDuration) ||
+                     parseDurStr(bsComp2?.duration) || parseDurStr(bsComp2?.time);
+    } else if (bsData.source === 'nhl') {
+      gameDate = bsData.data?.startTimeUTC;
+      attendance = bsData.data?.venueGames?.attendance ?? bsData.summary?.attendance;
+      // NHL API sometimes has gameScheduleState or gameDuration
+      const dur = bsData.data?.gameDuration;
+      if (dur?.timeRemaining !== undefined) {
+        // not useful, skip
+      } else if (dur && typeof dur === 'string' && dur.includes(':')) {
+        const [h,m] = dur.split(':').map(Number);
+        durationMins = h * 60 + (m||0);
+      }
+    }
+    if (gameDate) {
+      try {
+        const dt = new Date(gameDate);
+        extraNotes.push(`Start: ${dt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`);
+        if (durationMins) {
+          const endDt = new Date(dt.getTime() + durationMins * 60000);
+          extraNotes.push(`End: ${endDt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`);
+        }
+      } catch(e) {}
+    }
+    if (attendance) extraNotes.push(`Attendance: ${Number(attendance).toLocaleString()}`);
+    if (extraNotes.length) {
+      const notesBlock = document.getElementById('notesBlock');
+      if (notesBlock) {
+        const existingNotes = ev.notes ? esc(ev.notes).replace(/\n/g,'<br>') + '<br>' : '';
+        notesBlock.innerHTML = `<div class="modal-notes-block"><div class="modal-notes-label">Notes</div><div class="modal-notes-text">${existingNotes}${extraNotes.join('<br>')}</div></div>`;
+      }
     }
   }
 }
